@@ -8,29 +8,33 @@ export default function Filmes() {
         titulo: "Divertidamente 2",
         diretor: "Kelsey Mann",
         origem: "Estados Unidos",
-        cartaz: "https://lumiere-a.akamaihd.net/v1/images/gife454xsaa8wv-_3e8071e7.jpeg"
+        cartaz: "https://lumiere-a.akamaihd.net/v1/images/gife454xsaa8wv-_3e8071e7.jpeg",
+        ano: 2024
     },
     {
         id: 2,
         titulo: "O poderoso chefão",
         diretor: "Francis F. Coppola",
         origem: "Estados Unidos",
-        cartaz: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0NiuqExTSnKLd6uUwIRhJjbTkTUYwAMcmQ&s"
+        cartaz: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0NiuqExTSnKLd6uUwIRhJjbTkTUYwAMcmQ&s",
+        ano: 1972
     },
     {
         id: 3,
         titulo: "Cinema Paradiso",
         diretor: "Giuseppe Tornatore",
         origem: "Italia",
-        cartaz: "https://upload.wikimedia.org/wikipedia/pt/3/3c/Nuovo_Cinema_Paradiso.jpg"
+        cartaz: "https://upload.wikimedia.org/wikipedia/pt/3/3c/Nuovo_Cinema_Paradiso.jpg",
+        ano: 1998
     },
     {
         id: 4,
         titulo: "Todos menos voce",
         diretor: "Will Gluck",
         origem: "Estados Unidos",
-        cartaz: "https://i0.wp.com/pimentanerd.com.br/wp-content/uploads/2024/07/Todos-Menos-Voce.jpg?fit=800%2C1000&ssl=1"
-    },
+        cartaz: "https://i0.wp.com/pimentanerd.com.br/wp-content/uploads/2024/07/Todos-Menos-Voce.jpg?fit=800%2C1000&ssl=1",
+        ano: 2024  
+      },
     
 ] 
   
@@ -43,6 +47,7 @@ export default function Filmes() {
             <Text>Origem: {data.origem}</Text>
             <Image source={{uri: data.cartaz}}
              style = {{ width: 100, height: 100 }}/>
+             <Text>Ano: {data.ano}</Text>
           </View>
         ))}
           
