@@ -1,70 +1,42 @@
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View} from "react-native";
+import { Card, Paragraph, Title } from "react-native-paper";
+
+export default function Filmes({title}) {
+
+  const [filmes, setFilmes] = useState('');
+  const API = 'https://www.omdbapi.com/?apikey=166a4e4b'
 
 
-export default function Filmes() {
-  const data = [
-    {
-        id: 1,
-        titulo: "Divertidamente 2",
-        diretor: "Kelsey Mann",
-        origem: "Estados Unidos",
-        cartaz: "https://lumiere-a.akamaihd.net/v1/images/gife454xsaa8wv-_3e8071e7.jpeg",
-        ano: 2024
-    },
-    {
-        id: 2,
-        titulo: "O poderoso chefão",
-        diretor: "Francis F. Coppola",
-        origem: "Estados Unidos",
-        cartaz: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE0NiuqExTSnKLd6uUwIRhJjbTkTUYwAMcmQ&s",
-        ano: 1972
-    },
-    {
-        id: 3,
-        titulo: "Cinema Paradiso",
-        diretor: "Giuseppe Tornatore",
-        origem: "Italia",
-        cartaz: "https://upload.wikimedia.org/wikipedia/pt/3/3c/Nuovo_Cinema_Paradiso.jpg",
-        ano: 1998
-    },
-    {
-        id: 4,
-        titulo: "Todos menos voce",
-        diretor: "Will Gluck",
-        origem: "Estados Unidos",
-        cartaz: "https://i0.wp.com/pimentanerd.com.br/wp-content/uploads/2024/07/Todos-Menos-Voce.jpg?fit=800%2C1000&ssl=1",
-        ano: 2024  
-      },
-    
-] 
-  
-    return (
+  useEffect(() => {
+    getFilmes();
+  }, [title]);
+
+  async function getFilmes() {
+    try {
+      const response = await fetch(`${API}&t=${title}`);
+      const data = await response.json();
+      setFilmes(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
       <View>
-        {data.map((data)=>(
-          <View key={data.id} style={styles.container}>
-            <Text style={styles.text}>Titulo: {data.titulo}</Text>
-            <Text>Diretor: {data.diretor}</Text>
-            <Text>Origem: {data.origem}</Text>
-            <Image source={{uri: data.cartaz}}
-             style = {{ width: 100, height: 100 }}/>
-             <Text>Ano: {data.ano}</Text>
-          </View>
-        ))}
+         <Card style={{ margin: 10 }}>
+        <Card.Cover style ={{height: 250}} source={{ uri: filmes.Poster }} />
+        <Card.Content>
+          <Title>{filmes.Title}</Title>
+          <Paragraph>{filmes.Year}</Paragraph>
+          <Paragraph>{filmes.Director}</Paragraph>
+        </Card.Content>
+    </Card>
+       
           
       </View>
     );
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 10,
-      backgroundColor: 'pink',
-    },
-    text: {
-      justifyContent: 'center',
-      fontSize: 20
-    }
-  });
+ 
   

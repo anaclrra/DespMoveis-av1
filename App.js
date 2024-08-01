@@ -1,12 +1,21 @@
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Searchbar, TextInput } from 'react-native-paper';
 import Filmes from './src/components/Filmes';
 
 
 export default function App() {
+
+  const [title, setTitle] = useState('');
   
   return (
     <View style={styles.container}>
-      <Filmes/>
+       <Searchbar
+      placeholder="Search filmes"
+      onChangeText={setTitle}
+      value={title}
+    />
+      <Filmes title={title}/>
     </View>
     
   );
